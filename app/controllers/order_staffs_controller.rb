@@ -424,6 +424,18 @@ class OrderStaffsController < ApplicationController
     @staff = arreglo
   end
 
+  def dolor
+    @fecha_actual = Time.now.strftime("%F")
+    arreglo = []
+    orden = OrderStaff.where(:estado_formulario => false).each do |ord|
+       
+        if ord.grupos["dolor"]["incluido"] == true
+           arreglo << ord
+        end
+    end
+    @staff = arreglo
+  end
+
   def asignar
     grupos_asignar = []
     tipo = params[:tipo]
@@ -444,6 +456,7 @@ class OrderStaffsController < ApplicationController
     tumores_pelvicos = params[:tumores_pelvicos]
     peritoneo = params[:peritoneo]
     hematologia = params[:hematologia]
+    dolor = params[:dolor]
 
     if cirugia_mohs != nil
       grupos_asignar << cirugia_mohs
@@ -486,6 +499,10 @@ class OrderStaffsController < ApplicationController
     end
     if hematologia != nil
           grupos_asignar << hematologia
+    end
+
+    if dolor != nil
+      grupos_asignar << dolor
     end
 
     if grupos_asignar.empty? == true
@@ -626,6 +643,8 @@ end
         redirect_to "/order_staffs/peritoneo"
       when "Hematología"
         redirect_to "/order_staffs/hematologia"
+      when "Dolor"
+        redirect_to "/order_staffs/dolor"
       else
         redirect_to "/order_staffs/staff"
     

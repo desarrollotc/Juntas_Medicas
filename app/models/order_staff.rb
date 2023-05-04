@@ -96,6 +96,12 @@ class OrderStaff
 "responsable" => "",
 "nota" => "",
 "fecha_captacion" => Time.now.strftime("%F")
+},
+"dolor" =>  {"incluido" => false,
+"estado" => false,
+"responsable" => "",
+"nota" => "",
+"fecha_captacion" => Time.now.strftime("%F")
 }
 
 }

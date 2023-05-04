@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get 'order_staffs/tumores_pelvicos'
   get 'order_staffs/peritoneo'
   get 'order_staffs/hematologia'
+  get 'order_staffs/dolor'
   get 'order_staffs/enrutador'
   get 'errors/sin_grupo'
   get 'errors/sin_item'
