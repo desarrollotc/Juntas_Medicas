@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   get 'order_staffs/peritoneo'
   get 'order_staffs/hematologia'
   get 'order_staffs/dolor'
+  get 'order_staffs/muerte_digna'
+  get 'order_staffs/extra_institucional'
   get 'order_staffs/enrutador'
   get 'errors/sin_grupo'
   get 'errors/sin_item'

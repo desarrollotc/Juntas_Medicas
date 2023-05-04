@@ -155,6 +155,36 @@ class OrderStaffsController < ApplicationController
     end
     @total_hematologia = hematologia.size
 
+
+    #obtengo pacientes dolor
+    dolor = []
+    orden = OrderStaff.where(:estado_gestion => "pendiente").each do |ord|
+        if ord.grupos["dolor"]["incluido"] == true
+           dolor << ord
+        end
+    end
+    @total_dolor = dolor.size
+
+    #obtengo pacientes muerte digna
+    muerte_digna = []
+    orden = OrderStaff.where(:estado_gestion => "pendiente").each do |ord|
+        if ord.grupos["muerte_digna"]["incluido"] == true
+           dolor << ord
+        end
+    end
+    @total_muerte_digna = muerte_digna.size
+
+    #obtengo pacientes extra institucional
+    extra_institucional = []
+    orden = OrderStaff.where(:estado_gestion => "pendiente").each do |ord|
+        if ord.grupos["extra_institucional"]["incluido"] == true
+           dolor << ord
+        end
+    end
+    @total_extra_institucional = extra_institucional.size
+
+   
+
     $todos_los_grupos_tumor = @total_mohs+@total_derma+@total_linfomas+@total_funcional_clinico+@total_quirurgico+@total_torax+@total_gastro+@total_mastologia+@total_especiales+@total_oncologia+@total_cabeza_cuello+@total_pelvicos+@total_peritoneo+@total_hematologia
     @todos_los_grupos =  $todos_los_grupos_tumor
     $porcentaje_mohs = @total_mohs*100/$todos_los_grupos_tumor
@@ -171,6 +201,9 @@ class OrderStaffsController < ApplicationController
     $porcentaje_pelvicos = @total_pelvicos*100/$todos_los_grupos_tumor
     $porcentaje_peritoneo = @total_peritoneo*100/$todos_los_grupos_tumor
     $porcentaje_hematologia = @total_hematologia*100/$todos_los_grupos_tumor
+    $porcentaje_dolor = @total_dolor*100/$todos_los_grupos_tumor
+    $porcentaje_muerte_digna = @total_muerte_digna*100/$todos_los_grupos_tumor
+    $porcentaje_extra_institucional = @total_extra_institucional*100/$todos_los_grupos_tumor
     @barv2 = Gchart.pie(
       :size => '600x400',
       :bar_colors => ['24346C','000000','6786B8','3371FF','FFCE33','FF8633','FF4C33',
@@ -179,8 +212,9 @@ class OrderStaffsController < ApplicationController
       :bg => 'EFEFEF',
       :legend => ['Cirugía De Mohs '+@total_mohs.to_s+' ('+$porcentaje_mohs.round.to_s+'%)', 'Dermatología '+@total_derma.to_s+' ('+ $porcentaje_dermatologia.round.to_s+'%)','Linfomas Citáneos '+@total_linfomas.round.to_s+' ('+$porcentaje_linfomas.round.to_s+'%)','Funcional Clínico '+@total_funcional_clinico.to_s+' ('+$procentaje_funcional_clinico.round.to_s+'%)',
       'Funcional Quirúrgico '+@total_quirurgico.to_s+' ('+$porcentaje_quirurgico.round.to_s+'%)','Tórax '+@total_torax.to_s+' ('+$porcentaje_torax.round.to_s+'%)','Gastrointestinal '+@total_gastro.to_s+' ('+$porcentaje_gastro.round.to_s+'%)','Mastología '+@total_mastologia.to_s+' ('+$porcentaje_mastologia.round.to_s+'%)','Terapias Especiales '+@total_especiales.to_s+' ('+$porcentaje_especiales.round.to_s+'%)',
-      'Oncología '+@total_oncologia.to_s+' ('+$porcentaje_oncologia.round.to_s+'%)','Cirugía cabeza y cuello '+@total_cabeza_cuello.to_s+' ('+$porcentaje_cabeza_cuello.round.to_s+'%)','Tumores Pélvicos '+@total_pelvicos.to_s+' ('+$porcentaje_pelvicos.round.to_s+'%)','Peritoneo '+@total_peritoneo.to_s+' ('+$porcentaje_peritoneo.round.to_s+'%)','Hematología '+@total_hematologia.to_s+' ('+$porcentaje_hematologia.round.to_s+'%)'],
-      :data =>[@total_mohs, @total_derma, @total_linfomas, @total_funcional_clinico,@total_quirurgico,@total_torax,@total_gastro,@total_mastologia,@total_especiales,@total_oncologia,@total_cabeza_cuello,@total_pelvicos,@total_peritoneo,@total_hematologia],
+      'Oncología '+@total_oncologia.to_s+' ('+$porcentaje_oncologia.round.to_s+'%)','Cirugía cabeza y cuello '+@total_cabeza_cuello.to_s+' ('+$porcentaje_cabeza_cuello.round.to_s+'%)','Tumores Pélvicos '+@total_pelvicos.to_s+' ('+$porcentaje_pelvicos.round.to_s+'%)','Peritoneo '+@total_peritoneo.to_s+' ('+$porcentaje_peritoneo.round.to_s+'%)','Hematología '+@total_hematologia.to_s+' ('+$porcentaje_hematologia.round.to_s+'%)',
+      'Dolor '+@total_dolor.to_s+' ('+$porcentaje_dolor.round.to_s+'%)','Muerte Digna '+@total_muerte_digna.to_s+' ('+$porcentaje_muerte_digna.round.to_s+'%)','Extra Institucional '+@total_extra_institucional.to_s+' ('+$porcentaje_extra_institucional.round.to_s+'%)'],
+      :data =>[@total_mohs, @total_derma, @total_linfomas, @total_funcional_clinico,@total_quirurgico,@total_torax,@total_gastro,@total_mastologia,@total_especiales,@total_oncologia,@total_cabeza_cuello,@total_pelvicos,@total_peritoneo,@total_hematologia,@total_dolor,@total_muerte_digna,@total_extra_institucional],
       :stacked => false,
       :legend_position => 'left',
       :axis_with_labels =>[["A|B|C|D|E"]],
@@ -436,6 +470,30 @@ class OrderStaffsController < ApplicationController
     @staff = arreglo
   end
 
+  def muerte_digna
+    @fecha_actual = Time.now.strftime("%F")
+    arreglo = []
+    orden = OrderStaff.where(:estado_formulario => false).each do |ord|
+       
+        if ord.grupos["muerte_digna"]["incluido"] == true
+           arreglo << ord
+        end
+    end
+    @staff = arreglo
+  end
+
+  def extra_institucional
+    @fecha_actual = Time.now.strftime("%F")
+    arreglo = []
+    orden = OrderStaff.where(:estado_formulario => false).each do |ord|
+       
+        if ord.grupos["extra_institucional"]["incluido"] == true
+           arreglo << ord
+        end
+    end
+    @staff = arreglo
+  end
+
   def asignar
     grupos_asignar = []
     tipo = params[:tipo]
@@ -457,6 +515,8 @@ class OrderStaffsController < ApplicationController
     peritoneo = params[:peritoneo]
     hematologia = params[:hematologia]
     dolor = params[:dolor]
+    muerte_digna = params[:muerte_digna]
+    extra_institucional = params[:extra_institucional]
 
     if cirugia_mohs != nil
       grupos_asignar << cirugia_mohs
@@ -503,6 +563,14 @@ class OrderStaffsController < ApplicationController
 
     if dolor != nil
       grupos_asignar << dolor
+    end
+
+    if muerte_digna != nil
+      grupos_asignar << muerte_digna
+    end
+
+    if extra_institucional != nil
+      grupos_asignar << extra_institucional
     end
 
     if grupos_asignar.empty? == true
@@ -645,6 +713,10 @@ end
         redirect_to "/order_staffs/hematologia"
       when "Dolor"
         redirect_to "/order_staffs/dolor"
+      when "Muerte Digna"
+        redirect_to "/order_staffs/muerte_digna"
+      when "Extra Institucional"
+        redirect_to "/order_staffs/extra_institucional"
       else
         redirect_to "/order_staffs/staff"
     
