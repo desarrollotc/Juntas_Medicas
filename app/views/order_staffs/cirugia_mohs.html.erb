@@ -1,0 +1,99 @@
+<h1>Gestión Pacientes Cirugía Mohs</h1>
+<br>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<div style="float:left;width:75%;">
+<table id="test" class="display" >
+  <thead>
+    <tr>
+
+      <th>Paciente</th>
+      <th>Identificación</th>
+      <th>Días transcurridos</th>
+      <th>Fecha De Ordenamiento</th>
+      <th>Diagnóstico</th>
+      <th>Gestión</th>
+      
+     
+    </tr>
+  </thead>
+  <tbody>
+    <% @staff.each do |staff|%>
+    <tr>
+    <%= form_with(url:"/order_staffs/ver_gestion", method: "get", local:true, class:"sidebar-form") do %>
+      <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'id_relacional',value:staff.id,type: 'hidden'  %>
+      <td><%=staff.paciente%></td>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'identificacion',value:staff.identificacion,type: 'hidden'  %><%=staff.identificacion%></td>
+      <% $resta_dias_oportunidad = (@fecha_actual.to_date - staff.fecha_ejecucion).to_i %>
+      <% if $resta_dias_oportunidad > 7 %>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tipo',value:staff.tipo,type: 'hidden'  %><%= $resta_dias_oportunidad %> <i class='fa fa-bell' style="color:red;"></i></td>
+      <%else%>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tipo',value:staff.tipo,type: 'hidden'  %><%= $resta_dias_oportunidad %> <i class='fa fa-bell' style="color:green;"></i></td>
+      <%end%>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'gestion_grupo',value:staff.grupos["cirugia_mohs"]["estado"], type: 'hidden'  %><%=staff.fecha_ejecucion%></td>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tumor',value:"cirugia_mohs",type: 'hidden'  %><%=staff.nombre_diagnostico%></td>
+      <td>
+       <% if staff.grupos["cirugia_mohs"]["estado"] == false %>
+        <div class="input-group">
+            <center><%= button_tag "<i class='fa fa-check'></i>".html_safe ,type:"submit", class:"btn btn-pencil"%> </center> <center>Cambiar Estado</center>
+          </span>
+        </div>
+        <center> <i class="fa fa-circle" aria-hidden="true" style="color:orange;"></i></center>
+        <%else%>
+        <div class="input-group">
+            <center><%= button_tag "<i class='fa fa-eye'></i>".html_safe ,type:"submit", class:"btn btn-pencil"%></center> <center>Resumen de grupo</center>
+
+          </span>
+        </div>
+           <center> <i class="fa fa-circle" aria-hidden="true" style="color:green;"></i></center>
+        <%end%>
+      <% end %>
+      
+
+
+      </td>
+    </tr>
+    <%end%>
+    
+  </tbody>
+  <tfoot>
+    <tr>
+        <th>Paciente</th>
+        <th>Identificación</th>
+        <th>Días transcurridos</th>
+        <th>Fecha De Ordenamiento</th>
+        <th>Diagnóstico</th>
+        <th>Gestión</th>
+    </tr>
+  </tfoot>
+</table>
+</center>
+<br>
+<script>
+  
+ 
+           
+     /*función que desabilita elemento de carga loader
+     ubicado en aplication html*/
+    $(document).ready(function () {
+      $("#test").DataTable({ 
+        "preDrawCallback": function( settings ) {
+          $('#loader').css({'background':'none'});
+          $('#loader').css({'position':'none'});
+          $('#loader').css({'left':'none'});
+          $('#loader').css({'top':'none'});
+          $('#loader').css({'width':'none'});
+          $('#loader').css({'height':'none'});
+          $('#loader').css({'z-index':'-9999'});
+          $('#loader').css({'opacity':'none'});
+
+        }
+       }); 
+    
+    });
+
+
+</script>
+</div>
+

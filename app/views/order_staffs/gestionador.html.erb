@@ -1,0 +1,242 @@
+<div class="container" id="cuadro_gestionador">
+  <div class="row -spacing-a">
+    <div class="col-md-12">
+      <h1>Información del paciente  <i class="fas fa-heartbeat fa-2xl" style="color:#6786B8;"></i></h1>
+     
+     
+    </div>
+  </div>
+  
+    <div class="col-md-8" ><br>
+    <%@orden.each do |elemento|%>
+      <% $numero_grupos = elemento["asignados"].size %>
+      <div class="row -spacing-b">
+      <%@id_relacional=elemento["id"]%>
+        <div class="col-md-3">
+          <p class="-typo-copy"><b>Paciente:</b>  <%=elemento["paciente"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Tipo documento:</b>  <%=elemento["tipo"]%></p>
+          <%@tipo=elemento["tipo"]%>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Identificación:</b> <%=elemento["identificacion"]%></p>
+          <%@identificacion=elemento["identificacion"]%>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>EPS:</b> <%=elemento["eps"]%> </p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Fecha de ordenamiento:</b> <%=elemento["fecha_ejecucion"]%> </p>
+          <hr>
+          <br>
+          <% $resta_dias_oportunidad = (@fecha_actual.to_date - elemento["fecha_ejecucion"]).to_i %>
+          <p class="-typo-copy"><b>Días transcurridos:</b> <%=$resta_dias_oportunidad%> </p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Observación:</b> <%=elemento["observacion"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Justificación:</b> <%=elemento["justificacion"]%> </p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Cod diagnóstico:</b> <%=elemento["cod_diagnostico"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Nombre del diagnóstico:</b> <%=elemento["nombre_diagnostico"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Médico remitente:</b> <%=elemento["medico_remitente"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Estado gestión:</b> <%=elemento["estado_gestion"]%></p>
+          <hr>
+          <br>
+          <%asignados = elemento["asignados"]%>
+          <%if asignados.nil? == true%>
+          <p class="-typo-copy"><b>Staff asignado(s):</b> Sin grupos asignados</p>
+          <%else%>
+          <p class="-typo-copy"><b>Staff asignado(s):</b>    <%asignados.each do |assig|%><%=assig%> <%end%> </p>
+          <%end%>
+          
+         
+          <hr>
+          <br>
+          <%gestionados = elemento["gestionados"]%>
+          <%if gestionados.nil? == true%>
+          <p class="-typo-copy"><b>Staff gestionado(s):</b> Sin grupos gestionados </p>
+          <%else%>
+          <p class="-typo-copy"><b>Staff gestionado(s):</b>   <%gestionados.each do |assig|%><%=assig%>(<%=elemento["grupos"]["#{assig}"]["responsable"]%>) <%end%> </p>
+          <%end%>
+     
+          
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Nota(s) staff: </b> <%gestionados.each do |assig|%><%=assig%>(<%=elemento["grupos"]["#{assig}"]["nota"]%>) <%end%></p>
+            <hr>
+            <br>
+            <p class="-typo-copy"><b>Fecha(s) captación: </b> <%gestionados.each do |assig|%><%=assig%>(<%=elemento["grupos"]["#{assig}"]["fecha_captacion"]%>) <%end%></p>
+            <hr>
+            <br>
+
+          <% if elemento["estado_formulario"] == false %>
+          <p class="-typo-copy"><b>Formulario staff:</b> No se ha llenado el formulario final de staff</p>
+          <%else%>
+          <p class="-typo-copy"><b>Formulario staff:</b> Formulario completado </p>
+          <%end%>
+          <hr>
+          <br>
+
+          <%end%>
+        </div>
+
+        <% if $numero_grupos < 1 %>
+        <div class="col-md-3">
+          <br>
+          <h2>Asignar grupos de staff <i class="fas fa-object-group fa-2xl" style="color:#6786B8;"></i></h2>
+          <br>
+          <%= form_with(url:"/order_staffs/asignar", method: "get", local:true, class:"sidebar-form") do %>
+            <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'id_relacional',value:@id_relacional ,type: 'hidden'  %> 
+             <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tipo',value:@tipo ,type: 'hidden'  %> 
+             <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'identificacion',value:@identificacion ,type: 'hidden'  %>   
+                   
+            <label class="checkbox-radio">
+            <input type="checkbox" name="cirugia_mohs" value="cirugia_mohs">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Cirugía de Mohs</span>
+            </label>
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="dermatologia" value="dermatologia">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Dermatología</span>
+            </label>
+
+
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="linfomas_cutaneos" value="linfomas_cutaneos">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Linfomas cutáneos</span>
+            </label>
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="funcional_clinico" value="funcional_clinico">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Funcional clínico</span>
+            </label>
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="funcional_quirurgico" value="funcional_quirurgico">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Funcional quirúrgico</span>
+            </label>
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="torax" value="torax">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Tórax</span>
+            </label>
+            <br>
+            <label class="checkbox-radio">
+            <input type="checkbox" name="gastrointestinal" value="gastrointestinal">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Gastrointestinal</span>
+            </label>
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="mastologia" value="mastologia">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Mastología</span>
+            </label>
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="terapias_especiales" value="terapias_especiales">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Terapias especiales</span>
+            </label>
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="oncologia" value="oncologia">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Oncología</span>
+            </label>
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="cirugia_cabeza_cuello" value="cirugia_cabeza_cuello">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Cirugía cabeza y cuello</span>
+            </label>
+
+            <label class="checkbox-radio">
+            <input type="checkbox" name="tumores_pelvicos" value="tumores_pelvicos">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Tumores pélvicos</span>
+            </label>
+            <br>
+            <label class="checkbox-radio">
+            <input type="checkbox" name="peritoneo" value="peritoneo">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Peritoneo</span>
+            </label>
+            <label class="checkbox-radio">
+            <input type="checkbox" name="hematologia" value="hematologia">
+            <span class="checked-icon"></span>
+            <span class="checkbox-text">Hematología</span>
+            </label>
+            <br>
+            <br>
+             <!--ventana modal-->
+            <a href="#miModal" id="acceso" onclick="VerificarCasilla(this);f ><i class="fas fa-download fa-2xl">Asignar Grupos</i></a>
+            <div id="miModal" class="modal">
+              <div class="modal-contenido">
+                <a href="#" style="color:white;">X</a>
+                <center><%= image_tag 'logo.png', width:'180px', style:'background:white;border-radius:50%'%>
+                  <center>
+                    <h2 style="color: white;">¡Cuidado!</h2>
+                  </center>
+                  <br>
+                  <center>
+                    <p style="color: white;">Al presionar este botón se envia el paciente a los grupos de tumor seleccionados.
+                                      </p><br>
+                    <center> <%= button_tag "GESTIONAR".html_safe ,type:"submit", class:"btn btn-flat"%></center>
+              </div>
+            </div>
+            <% end %>
+
+         
+
+        </div>
+        <br>
+        <br>
+       <%end%>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  
+/*función que desabilita elemento de carga loader
+     ubicado en aplication html*/
+    $(document).ready(function () {
+   
+      
+          $('#loader').css({'background':'none'});
+          $('#loader').css({'position':'none'});
+          $('#loader').css({'left':'none'});
+          $('#loader').css({'top':'none'});
+          $('#loader').css({'width':'none'});
+          $('#loader').css({'height':'none'});
+          $('#loader').css({'z-index':'-9999'});
+          $('#loader').css({'opacity':'none'});
+
+        
+ });
+
+
+</script>

@@ -1,0 +1,115 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.29/dist/vuetify.min.js"></script>
+<h1>Pacientes Junta Médica Staff</h1>
+
+
+<br>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<div style="float:left;width:78%;">
+
+<table id="test" class="display" >
+  <thead>
+    <tr>
+
+      <th>Paciente</th>
+      <th>Identificación</th>
+      <th>Días transcurridos</th>
+      <th>Fecha De Ordenamiento</th>
+      <th>Diagnóstico</th>
+      <th>Gestión</th>
+      
+      
+     
+    </tr>
+  </thead>
+  <tbody>
+    <% @staff.each do |staff|%>
+    <tr>
+    <%ruta_form = "/order_staffs/gestionador" %>
+    <%= form_with(url:"#{ruta_form}", method: "get", local:true, class:"sidebar-form") do %>
+    <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'id_relacional',value:staff.id,type: 'hidden'  %>
+      <td><%=staff.paciente%></td>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'identificacion',value:staff.identificacion,type: 'hidden'  %><%=staff.identificacion%></td>
+      <% $resta_dias_oportunidad = (@fecha_actual.to_date - staff.fecha_ejecucion).to_i %>
+      <% if $resta_dias_oportunidad > 7 %>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tipo',value:staff.tipo,type: 'hidden'  %><%= $resta_dias_oportunidad %> <i class='fa fa-bell' style="color:red;"></i></td>
+      <%else%>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tipo',value:staff.tipo,type: 'hidden'  %><%= $resta_dias_oportunidad %> <i class='fa fa-bell' style="color:green;"></i></td>
+      <%end%>
+      <td><%=staff.fecha_ejecucion%></td>
+      <td><%=staff.nombre_diagnostico%></td>
+      <td>
+         <% if staff.asignados.size < 1 %>
+         
+        <div class="input-group">
+            <center><%= button_tag "<i class='fa fa-check'></i>".html_safe ,type:"submit", class:"btn btn-flat"%></center><center>Asignar Staff</center></span>
+        </div>
+        <center><i class="fa fa-circle" aria-hidden="true" style="color:red;"></i></center>
+        
+        <%else%>
+        
+          <div class="input-group">
+          <center><%= button_tag "<i class='fa fa-eye'></i>".html_safe ,type:"submit", class:"btn btn-flat"%></center> <center>Ver Gestión</center>
+          </span>
+        </div>
+        <center><i class="fa fa-circle" aria-hidden="true" style="color:orange;"></i></center>
+        <% end %>
+      <% end %>
+     
+
+
+      </td>
+    </tr>
+    <%end%>
+    
+  </tbody>
+  <tfoot>
+    <tr>
+        <th>Paciente</th>
+        <th>Identificación</th>
+        <th>Días transcurridos</th>
+        <th>Fecha De Ordenamiento</th>
+        <th>Diagnóstico</th>
+        <th>Gestión</th>
+    </tr>
+  </tfoot>
+</table>
+</center>
+<br>
+<script>
+  
+ 
+/*función que desabilita elemento de carga loader
+ubicado en aplication html*/
+$(document).ready(function () {
+ $("#test").DataTable({ 
+   "preDrawCallback": function( settings ) {
+     $('#loader').css({'background':'none'});
+     $('#loader').css({'position':'none'});
+     $('#loader').css({'left':'none'});
+     $('#loader').css({'top':'none'});
+     $('#loader').css({'width':'none'});
+     $('#loader').css({'height':'none'});
+     $('#loader').css({'z-index':'-9999'});
+     $('#loader').css({'opacity':'none'});
+
+   }
+  }); 
+
+});
+
+
+</script>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,74 @@
+<h1 id="titulo">Módulo de descargas excel <i class="fas fa-file-excel" style="color:#6786B8;"></i></h1>
+<div class="col-md-3">
+<br>
+<h2>Seleccione el item de descarga <i class="fas fa-download" style="color:#6786B8;"></i></h2>
+<br>
+<br>
+
+
+ 
+  <a  id="acceso" onclick="VerificarCasilla(this);"><i class="fas fa-globe"></i><%=link_to " Todos los pacientes", order_staffs_todos_los_pacientes_url(format: :csv)%></i></a><br><br><br><br>
+  <a  id="acceso" onclick="VerificarCasilla(this);"><i class="fas fa-clock"></i><%=link_to " Pacientes pendientes", order_staffs_pendientes_url(format: :csv)%></i></a><br><br><br><br>
+  <a  id="acceso" onclick="VerificarCasilla(this);"><i class="fas fa-check"></i><%=link_to " Pacientes gestionados", order_staffs_completados_url(format: :csv)%></i></a><br><br><br><br>
+  <a  id="acceso" onclick="VerificarCasilla(this);"><i class="fas fa-address-card"></i><%=link_to " Formularios completados", forms_formularios_url(format: :csv)%></i></a><br><br><br><br>
+
+
+
+</div>
+<br>
+<br>
+<script>
+$(document).ready(function () {
+   
+      
+    $('#loader').css({'background':'none'});
+    $('#loader').css({'position':'none'});
+    $('#loader').css({'left':'none'});
+    $('#loader').css({'top':'none'});
+    $('#loader').css({'width':'none'});
+    $('#loader').css({'height':'none'});
+    $('#loader').css({'z-index':'-9999'});
+    $('#loader').css({'opacity':'none'});
+  
+
+  
+});
+
+function myFunction() {
+    var x = document.getElementById("gestionados");
+    var y = document.getElementById("sin_gestion");
+    if (x.style.display === "none" && y.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "block";
+    } else {
+        x.style.display = "none";
+        y.style.display = "none";
+    }
+}
+
+function myFunction2() {
+    var x = document.getElementById("todos");
+    var y = document.getElementById("sin_gestion");
+    if (x.style.display === "none" && y.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "block";
+    } else {
+        x.style.display = "none";
+        y.style.display = "none";
+    }
+}
+
+function myFunction3() {
+    var x = document.getElementById("todos");
+    var y = document.getElementById("gestionados");
+    if (x.style.display === "none" && y.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "block";
+    } else {
+        x.style.display = "none";
+        y.style.display = "none";
+    }
+}
+
+
+</script>

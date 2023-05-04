@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paciente: MyString
+  tipo: MyString
+  identificacion: MyString
+  fecha_ejecucion: MyString
+  observacion: MyString
+  justificacion: MyString
+  cod_diagnostico: MyString
+  nombre_cie10: MyString
+  gestionado: MyString
+  grupos: MyString
+  estado_gestion: MyString
+
+two:
+  paciente: MyString
+  tipo: MyString
+  identificacion: MyString
+  fecha_ejecucion: MyString
+  observacion: MyString
+  justificacion: MyString
+  cod_diagnostico: MyString
+  nombre_cie10: MyString
+  gestionado: MyString
+  grupos: MyString
+  estado_gestion: MyString

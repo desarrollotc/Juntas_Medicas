@@ -1,0 +1,78 @@
+<%= fields = [:paciente,:tipo,:identificacion,:fecha_ejecucion,:observacion,:justificacion,:cod_diagnostico,:estado_gestion,:asignados,:gestionados,:responsables,:notas,:fechas,:formulario].join(";") %>
+<% @order_staffs.each do |staff| %>
+    <% paciente = staff.paciente %>
+    <% tipo = staff.tipo %>
+    <% identificacion = staff.identificacion %>
+    <% fecha_ejecucion = staff.fecha_ejecucion %>
+    <% observacion = staff.observacion %>
+    <% justificacion = staff.justificacion %>
+    <% cod_diagnostico = staff.cod_diagnostico %>
+    <% estado_gestion = staff.estado_gestion %>
+    <% asignados = staff.asignados %>
+    <% gestionados = staff.gestionados %>
+    <% $formularios_finales = staff.estado_formulario 
+       if $formularios_finales == false
+           $formularios_finales = "Pendiente"
+       else
+          $formularios_finales = "Realizado"
+       end
+    %>
+    <%
+    contador = gestionados.size-1
+    lista_responsables = []
+    loop do
+
+        contador -=1
+        responsables = staff.grupos[asignados[contador]]
+        if responsables.nil? == true
+            responsables = "sin responsables"
+        else
+            responsables = staff.grupos[asignados[contador]]["responsable"]
+        end
+
+        lista_responsables<<responsables
+        
+        break if contador <= -1
+    end
+    responsables = lista_responsables
+    %>
+    <%
+    contador = gestionados.size
+    lista_notas = []
+    loop do
+
+        contador -=1
+        notas = staff.grupos[asignados[contador]]
+        if notas.nil? == true
+            notas = "sin notas"
+        else
+            notas = staff.grupos[asignados[contador]]["nota"]
+        end
+
+        lista_notas<<notas
+        
+        break if contador <= 0
+    end
+    notas = lista_notas
+    %>
+    <%
+    contador = gestionados.size
+    lista_fechas= []
+    loop do
+
+        contador -=1
+        fechas = staff.grupos[asignados[contador]]
+        if fechas.nil? == true
+            fechas = "sin notas"
+        else
+            fechas = staff.grupos[asignados[contador]]["fecha_captacion"]
+        end
+
+        lista_fechas<<fechas
+        
+        break if contador <= 0
+    end
+    fechas = lista_fechas
+    %>
+    <%= [paciente , tipo , identificacion.to_s , fecha_ejecucion , observacion, justificacion, cod_diagnostico, estado_gestion, asignados.join(","),gestionados.join(","), responsables.join(","), notas.join(" || "),lista_fechas.join(" || "),$formularios_finales].join(";") %>
+<% end %>

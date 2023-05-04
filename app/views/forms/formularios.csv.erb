@@ -1,0 +1,54 @@
+<%= fields = [:Paciente,:Identificacion,:Eps,:Fecha_de_staff,:Dias_transcurridos,
+:Medico_tratante,:Medico_remitente,:Fecha_de_remision,:Cod_diagnostico,
+:Nombre_diagnostico,:Manejo_actual,:Estado_enfermedad,:Propuesta_discutir,
+:Revision_histologica,:Hallazgos_diferentes,:Revision_imagenes,:Hallazgos_revision_imagenes,:Qt,
+:Rt,:Cx,:Consulta_especialidad_quirurgica,:Consulta_oncologo_hematologo,:Consulta_dolor_cuidados_paliativos,
+:Estudios_imagenes,:Estudios_moleculares,:Estudios_genomicos,:Biopsia,:Medicamento_alto_costo,
+:Cual_medicamento_alto_costo,:Intencion_del_tratamiento,:Valoracion_otro_staff,:Staff_remitente,
+:Responsable_cigespa,:Fecha_gestion,:Gestion_realizada].join(";") %>
+<% @forms.each do |form| %>
+    <% paciente = form.paciente %>
+    <% identificacion = form.identificacion %>
+    <% eps = form.eps %>
+    <% fecha_staff = form.fecha_de_staff %>
+    <% dias_transcurridos = form.dias_transcurridos%>
+    <% medico_tratante = form.medico_tratante %>
+    <% medico_remitente = form.medico_remitente %>
+    <% fecha_de_remision = form.fecha_de_remision%>
+    <% cod_diagnostico = form.cod_diagnostico%>
+    <% nombre_diagnostico = form.nombre_diagnostico%>
+    <% manejo_actual = form.manejo_actual %>
+    <% estado_enfermedad = form.estado_enfermedad%>
+    <% propuesta_discutir = form.propuesta_discutir%>
+    <% revision_histologica = form.revision_histologica%>
+    <% hallazgos_diferentes = form.hallazgos_diferentes%>
+    <% revision_imagenes = form.revision_imagenes%>
+    <% hallazgos_revision_imagenes = form.hallazgos_revision_imagenes%>
+    <% qt = form.qt%>
+    <% rt = form.rt%>
+    <% cx = form.cx%>
+    <% consulta_especialidad_quirurgica = form.consulta_especialidad_quirurgica%>
+    <% consulta_oncologo_hematologo = form.consulta_oncologo_hematologo%>
+    <% consulta_dolor_cuidados_paliativos = form.consulta_dolor_cuidados_paliativos%>
+    <% estudios_imagenes = form.estudios_imagenes%>
+    <% estudios_moleculares = form.estudios_moleculares%>
+    <% estudios_genomicos = form.estudios_genomicos%>
+    <% biopsia = form.biopsia%>
+    <% medicamento_alto_costo = form.medicamento_alto_costo%>
+    <% cual_medicamento_alto_costo = form.cual_medicamento_alto_costo%>
+    <% intencion_del_tratamiento = form.intencion_del_tratamiento%>
+    <% valoracion_otro_staff = form.valoracion_otro_staff%>
+    <% staff_remitente = form.staff_remitente%>
+    <% responsable_cigespa = form.responsable_cigespa%>
+    <% fecha_gestion = form.fecha_gestion%>
+    <% gestion_realizada = form.gestion_realizada%>
+    <%= [paciente,identificacion,eps,fecha_staff,dias_transcurridos,
+    medico_tratante,medico_remitente,fecha_de_remision,cod_diagnostico,
+    nombre_diagnostico,manejo_actual,estado_enfermedad,propuesta_discutir,
+    revision_histologica,hallazgos_diferentes,revision_imagenes,
+    hallazgos_revision_imagenes,qt,rt,cx,consulta_especialidad_quirurgica,
+    consulta_oncologo_hematologo,consulta_dolor_cuidados_paliativos,
+    estudios_imagenes,estudios_moleculares,estudios_genomicos,biopsia,medicamento_alto_costo,
+    cual_medicamento_alto_costo,intencion_del_tratamiento,valoracion_otro_staff,
+    staff_remitente,responsable_cigespa,fecha_gestion,gestion_realizada].join(";") %>
+<% end %>

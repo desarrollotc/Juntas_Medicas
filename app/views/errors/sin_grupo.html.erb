@@ -1,0 +1,45 @@
+<h1></h1>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+</head>
+
+
+<div class="base">
+  <div class="error">
+    <span class="neon">4</span>
+    <span class="neon">0</span>
+    <span class="neon">4</span>
+  </div>
+  <span class="message">No seleccionaste ningún grupo<span><br>
+      <span class="message">Selecciona uno o algún grupo de tumor<span>
+</div>
+
+
+<script>
+  
+/*función que desabilita elemento de carga loader
+     ubicado en aplication html*/
+    $(document).ready(function () {
+          $('#loader').css({'background':'none'});
+          $('#loader').css({'position':'none'});
+          $('#loader').css({'left':'none'});
+          $('#loader').css({'top':'none'});
+          $('#loader').css({'width':'none'});
+          $('#loader').css({'height':'none'});
+          $('#loader').css({'z-index':'-9999'});
+          $('#loader').css({'opacity':'none'});
+
+        
+ });
+
+
+</script>
+
+<script>
+setTimeout(function(){
+    window.history.back();
+}, 2000);
+</script>
+
+
+

@@ -1,0 +1,66 @@
+<%= fields = [:paciente,:tipo,:identificacion,:fecha_ejecucion,:observacion,:justificacion,:cod_diagnostico,:estado_gestion,:asignados,:gestionados,:responsables,:fechas,:formulario,:notas].join(";") %>
+<% @order_staffs.each do |staff| %>
+    <% paciente = staff.paciente %>
+    <% tipo = staff.tipo %>
+    <% identificacion = staff.identificacion %>
+    <% fecha_ejecucion = staff.fecha_ejecucion %>
+    <% observacion = staff.observacion %>
+    <% justificacion = staff.justificacion %>
+    <% cod_diagnostico = staff.cod_diagnostico %>
+    <% estado_gestion = staff.estado_gestion %>
+    <% asignados = staff.asignados %>
+    <% gestionados = staff.gestionados %>
+    <% $formularios_finales = staff.estado_formulario 
+       if $formularios_finales == false
+           $formularios_finales = "Pendiente"
+       else
+          $formularios_finales = "Realizado"
+       end
+    %>
+    <%
+    contador = gestionados.size-1
+    lista_responsables = []
+    loop do
+
+        contador -=1
+        responsables = staff.grupos[asignados[contador]]["responsable"]
+        lista_responsables<<responsables
+        
+        break if contador <= -1
+    end
+    responsables = lista_responsables
+    %>
+    <%
+    contador2 = gestionados.size-1
+    lista_notas = []
+    loop do
+
+        contador2 -=1
+        notas = staff.grupos[asignados[contador2]]["nota"]
+        if notas.empty? == true
+            notas = "sin nota"
+        end
+        lista_notas<<notas
+        
+        break if contador2 <= -1
+    end
+    todas_las_notas = lista_notas
+    %>
+    <%
+    contador3 = gestionados.size-1
+    lista_fechas = []
+    loop do
+
+        contador3 -=1
+        notas = staff.grupos[asignados[contador3]]["fecha_captacion"]
+        if notas.empty? == true
+            notas = "sin fechas"
+        end
+        lista_fechas<<notas
+        
+        break if contador3 <= -1
+    end
+    todas_las_fechas = lista_fechas
+    %>
+    <%= [paciente , tipo , identificacion.to_s , fecha_ejecucion , observacion, justificacion, cod_diagnostico, estado_gestion, asignados.join(","),gestionados.join(","), responsables.join(","),todas_las_fechas.join(" || "),$formularios_finales,todas_las_notas.join(" || ")].join(";") %>
+<% end %>

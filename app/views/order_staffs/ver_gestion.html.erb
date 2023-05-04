@@ -1,0 +1,221 @@
+<div class="container" id="cuadro_gestionador">
+  <div class="row -spacing-a">
+    <div class="col-md-12">
+    <%if @gestion_grupo == "false"%>
+      <h1>Resumen del paciente  <i class="fa fa-address-card  fa-2xl" style="color:#6786B8;"></i></h1>
+    <%else%>
+    <h1>Resumen de la gestión <i class="fas fa-pie-chart  fa-2xl" style="color:#6786B8;"></i></h1>
+   <%end%>
+  
+
+   
+ <%if @estado_de_gestionado == "gestionados" %>
+   <%@gestion_grupo="true"%>
+ <%end%>
+   
+    
+    </div>
+  </div>
+
+  <div class="col-md-8"><br>
+    <%@orden.each do |elemento|%>
+      <% $id_relacional = elemento["id"]%>
+      <% $numero_grupos = elemento["asignados"].size %>
+      <div class="row -spacing-b">
+        <div class="col-md-3">
+          <p class="-typo-copy"><b>Paciente:</b>  <%=elemento["paciente"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Tipo documento:</b>  <%=elemento["tipo"]%></p>
+          <%@tipo=elemento["tipo"]%>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Identificación</b>: <%=elemento["identificacion"]%></p>
+          <%@identificacion=elemento["identificacion"]%>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>EPS:</b> <%=elemento["eps"]%> </p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Fecha de ordenamiento:</b> <%=elemento["fecha_ejecucion"]%> </p>
+          <hr>
+          <br>
+          <% $resta_dias_oportunidad = (@fecha_actual.to_date - elemento["fecha_ejecucion"]).to_i %>
+          <p class="-typo-copy"><b>Días transcurridos:</b> <%=$resta_dias_oportunidad%> </p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Observación:</b> <%=elemento["observacion"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Justificación:</b> <%=elemento["justificacion"]%> </p>
+          <hr>
+          <br>
+          
+          <p class="-typo-copy"><b>Cod diagnóstico:</b> <%=elemento["cod_diagnostico"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Nombre del diagnóstico:</b> <%=elemento["nombre_diagnostico"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Médico remitente:</b> <%=elemento["medico_remitente"]%></p>
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Estado gestión:</b> <%=elemento["estado_gestion"]%></p>
+          <hr>
+          <br>
+          <%asignados = elemento["asignados"]%>
+          <%if asignados.nil? == true%>
+          <p class="-typo-copy"><b>Staff asignado(s): </b> Sin grupos asignados</p>
+          <%else%>
+          <p class="-typo-copy"><b>Staff asignado(s): </b>    <%asignados.each do |assig|%><%=assig%> <%end%> </p>
+          <%end%>
+          
+         
+          <hr>
+          <br>
+          <% $arreglo_responsables = [] %>
+          <%gestionados = elemento["gestionados"]%>
+          <%if gestionados.nil? == true%>
+          <p class="-typo-copy"><b>Staff gestionado(s): </b> Sin grupos gestionados </p>
+          <%else%>
+          <p class="-typo-copy"><b>Staff gestionado(s): </b>  <%gestionados.each do |assig|%><%=assig%><% $arreglo_responsables << elemento["grupos"]["#{assig}"]["responsable"] %>(<%=elemento["grupos"]["#{assig}"]["responsable"]%>) <%end%> </p>
+          <%end%>
+     
+          
+          <hr>
+          <br>
+          <p class="-typo-copy"><b>Nota(s) staff: </b> <%gestionados.each do |assig|%><%=assig%>(<%=elemento["grupos"]["#{assig}"]["nota"]%>) <%end%></p>
+          <hr>
+          <br>
+          <% $arreglo_fechas = [] %>
+          <p class="-typo-copy"><b>Fecha(s) captación: </b> <%gestionados.each do |assig|%> <% $arreglo_fechas << elemento["grupos"]["#{assig}"]["fecha_captacion"] %><%=assig%>(<%=elemento["grupos"]["#{assig}"]["fecha_captacion"]%>) <%end%></p>
+          <hr>
+          <br>
+         
+          
+          <% if elemento["estado_formulario"] == false && elemento["estado_gestion"] == "terminada" %>
+          <p class="-typo-copy"><b>Formulario staff:</b> No se ha llenado el formulario final de staff</p>
+          <%= form_with(url:"/forms/diligenciador", method: "get", local:true, class:"sidebar-form") do %>
+          <div class="input-group">
+
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'staff',value:elemento["asignados"],type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'fechas_staff',value:$arreglo_fechas,type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'identificacion',value:elemento["identificacion"],type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'paciente',value:elemento["paciente"],type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'eps',value:elemento["eps"],type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'responsables',value: $arreglo_responsables,type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'remitente',value:elemento["medico_remitente"],type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'fecha_ejecucion',value:elemento["fecha_ejecucion"],type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'cod_diagnostico',value:elemento["cod_diagnostico"],type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'diagnostico',value:elemento["nombre_diagnostico"],type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'dias_transcurridos',value:$resta_dias_oportunidad,type: 'hidden'  %>
+          <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'id_relacional',value:$id_relacional,type: 'hidden'  %>
+
+         
+          <%= button_tag "Ir al formulario <i class='fa fa-arrow-right'></i>".html_safe ,type:"submit", class:"btn btn-pencil", style:"border-radius:100%;padding:10px;" %> Dé click en el botón para llenar el formulario final
+           </span>
+          </div>
+          <br>
+          <% end %>
+          <%elsif elemento["estado_formulario"] == false && elemento["estado_gestion"] == "pendiente"%>
+          <p class="-typo-copy"><b>Formulario staff:</b> Pendiente a terminar grupos</p>
+          
+          <%else%>
+          <p class="-typo-copy"><b>Formulario staff:</b> Formulario completado</p>
+          <%= form_with(url:"/forms/visualizador", method: "get", local:true, class:"sidebar-form") do %>
+            <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'id_relacional',value:$id_relacional,type: 'hidden'  %>
+            
+            <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'id_relacional',value:elemento["_id"],type: 'hidden' %>
+            <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'identificacion',value:elemento["identificacion"],type: 'hidden'  %>
+            <div class="input-group">
+            <%= button_tag "Ver <i class='fa fa-eye'></i>".html_safe ,type:"submit", class:"btn btn-pencil",style:"border-radius:100%;padding:10px;"%> Dé click en el botón para ver información del formulario
+             </span>
+            </div>
+            <br>
+            <% end %>
+          <%end%>
+          <hr>
+          <br>
+       
+
+          <%end%>
+        </div>
+        
+        <% if @gestion_grupo == "false"%>
+        <div class="col-md-3" id="bloque_cambiar_estado">
+        <br>
+        <h2>Cambiar Estado A Captado <i class="fas fa-pencil-square fa-2xl" style="color:#6786B8;"></i></h2>
+
+        <%= form_with(url:"/order_staffs/cambiar_estado_tumor", method: "get", local:true, class:"sidebar-form") do %>
+           <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'id_relacional',value:$id_relacional,type: 'hidden'  %>
+           <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tipo',value:@tipo ,type: 'hidden'  %> 
+           <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'identificacion',value:@identificacion ,type: 'hidden'  %>   
+           <input type="checkbox" name="tumor" value="<%=@tumor%>" class="gestionador" id="switch" required /><label for="switch" class="aviso">Toggle</label>
+           <br>
+           <label>Especifique la nota del cambio (*obligatorio)<label>
+           <br>
+           <br>
+           <textarea name="nota_tumor" placeholder="Ingrese la nota aquí" required></textarea>
+           <br>
+           <br>
+          
+           <!--campo oculto responsable-->
+           <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'responsable',value:@responsable,type: 'hidden'  %>
+           <br>
+           
+           <!--ventana modal-->
+          <a href="#miModal" id="acceso" onclick="VerificarCasilla(this);f ><i class="fas fa-download fa-2xl">Cambiar Estado</i></a>
+          <div id="miModal" class="modal">
+            <div class="modal-contenido">
+              <a href="#" style="color:white;">X</a>
+              <center><%= image_tag 'logo.png', width:'180px', style:'background:white;border-radius:50%'%>
+                <center>
+                  <h2 style="color: white;">¡Cuidado!</h2>
+                </center>
+                <br>
+                <center>
+                  <p style="color: white;">Al presionar este botón se cambia el estado del paciente a resuelto en este grupo de tumor  .
+                                    </p><br>
+                  <center> <%= button_tag "GESTIONAR".html_safe ,type:"submit", class:"btn btn-flat"%></center>
+            </div>
+          </div>
+          <% end %>
+          <% end %>
+
+         
+          
+
+       
+
+      </div>
+      
+      <br>
+      <br>
+  
+
+
+
+
+<script>
+  
+/*función que desabilita elemento de carga loader
+     ubicado en aplication html*/
+    $(document).ready(function () {
+   
+      
+          $('#loader').css({'background':'none'});
+          $('#loader').css({'position':'none'});
+          $('#loader').css({'left':'none'});
+          $('#loader').css({'top':'none'});
+          $('#loader').css({'width':'none'});
+          $('#loader').css({'height':'none'});
+          $('#loader').css({'z-index':'-9999'});
+          $('#loader').css({'opacity':'none'});
+
+        
+ });
+
+
+
+
+</script>

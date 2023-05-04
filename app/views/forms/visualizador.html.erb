@@ -1,0 +1,160 @@
+<h1></h1>
+<div class="container" id="cuadro_gestionador">
+  <div class="row -spacing-a">
+    <div class="col-md-12">
+      <h1>Resumen del formulario  <i class="fas fa-list-alt   fa-2xl" style="color:#6786B8;"></i></h1>
+    </div>
+  </div>
+ 
+  <div class="col-md-8"><br>
+  <%@form.each do |elemento|%>
+    <div class="row -spacing-b">
+     <div class="col-md-3">
+       <p class="-typo-copy"><b>Paciente:</b>  <%=elemento["paciente"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Identificación:</b>  <%=elemento["identificacion"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Eps:</b>  <%=elemento["eps"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Fecha de staff:</b>  <%=elemento["fecha_de_staff"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Días transcurridos (Después de creación de cups):</b>  <%=elemento["dias_transcurridos"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Staff:</b>  <%=elemento["staff"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Médico(s) tratante(s):</b>  <%=elemento["medico_tratante"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Médico remitente:</b>  <%=elemento["medico_remitente"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Fecha de remisión:</b>  <%=elemento["fecha_de_remision"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Código de diagnóstico:</b>  <%=elemento["cod_diagnostico"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Nombre del diagnóstico:</b>  <%=elemento["nombre_diagnostico"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Manejo actual:</b>  <%=elemento["manejo_actual"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Estado Enfermedad:</b>  <%=elemento["estado_enfermedad"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Propuesta a discutir:</b>  <%=elemento["propuesta_discutir"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Revisión histologíca:</b>  <%=elemento["revision_histologica"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Hallazgos diferentes:</b>  <%=elemento["hallazgos_diferentes"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Revisión Imágenes:</b>  <%=elemento["revision_imagenes"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Hallazgos revisión de imágenes:</b>  <%=elemento["hallazgos_revision_imagenes"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Qt:</b>  <%=elemento["qt"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Rt:</b>  <%=elemento["rt"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Cx:</b>  <%=elemento["cx"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Consulta especialidad quirúrgica:</b>  <%=elemento["consulta_especialidad_quirurgica"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Consulta oncólogo hematólogo:</b>  <%=elemento["consulta_oncologo_hematologo"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Consulta dolor y cuidados paliativos:</b>  <%=elemento["consulta_dolor_cuidados_paliativos"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Estudio de imágenes:</b>  <%=elemento["estudios_imagenes"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Estudios moleculares:</b>  <%=elemento["estudios_moleculares"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Estudios genómicos:</b>  <%=elemento["estudios_genomicos"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Biopsia:</b>  <%=elemento["biopsia"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Medicamento de alto costo:</b>  <%=elemento["medicamento_alto_costo"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>¿Cuál medicamento de alto costo?:</b>  <%=elemento["cual_medicamento_alto_costo"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Intención del tratamiento:</b>  <%=elemento["intencion_del_tratamiento"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Valoración otro staff:</b>  <%=elemento["valoracion_otro_staff"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Staff remitente:</b>  <%=elemento["staff_remitente"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Responsable cigespa:</b>  <%=elemento["responsable_cigespa"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Fecha gestión:</b>  <%=elemento["fecha_gestion"]%></p>
+       <hr>
+       <br>
+       <p class="-typo-copy"><b>Gestión realizada:</b>  <%=elemento["gestion_realizada"]%></p>
+       <hr>
+       <br>
+       
+       
+
+     </div>
+    <div>
+  <%end%>
+
+  </div>
+  
+</div>
+
+
+  
+
+
+
+
+<script>
+  
+/*función que desabilita elemento de carga loader
+     ubicado en aplication html*/
+    $(document).ready(function () {
+   
+      
+          $('#loader').css({'background':'none'});
+          $('#loader').css({'position':'none'});
+          $('#loader').css({'left':'none'});
+          $('#loader').css({'top':'none'});
+          $('#loader').css({'width':'none'});
+          $('#loader').css({'height':'none'});
+          $('#loader').css({'z-index':'-9999'});
+          $('#loader').css({'opacity':'none'});
+
+        
+ });
+
+
+
+
+</script>

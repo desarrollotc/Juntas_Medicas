@@ -1,0 +1,75 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_de_staff: 2022-12-07
+  staff: 
+  identificacion: MyString
+  paciente: MyString
+  eps: MyString
+  medico_tratante: MyString
+  medico_remitente: MyString
+  fecha_de_remision: 2022-12-07
+  cod_diagnostico: MyString
+  nombre_diagnostico: MyString
+  manejo_actual: MyString
+  estado_enfermedad: MyString
+  propuesta_discutir: MyString
+  revision_histologica: MyString
+  hallazgos_diferentes: MyString
+  revision_imagenes: MyString
+  hallazgos_revision_imagenes: MyString
+  qt: MyString
+  rt: MyString
+  cx: MyString
+  consulta_especialidad_quirurgica: MyString
+  consulta_oncólogo_hematologo: MyString
+  consulta_dolor_cuidados_paliativos: MyString
+  estudios_imagenes: MyString
+  estudios_moleculares: MyString
+  estudios_genomicos: MyString
+  biopsia_string: MyString
+  medicamento_alto_costo: MyString
+  cual_medicamento_alto_costo: MyString
+  intencion_del_tratamiento: MyString
+  valoracion_otro_staff: MyString
+  staff_remitente: MyString
+  respoinsable: 
+  fecha_gestion: MyString
+  gestion_realizada: MyString
+
+two:
+  fecha_de_staff: 2022-12-07
+  staff: 
+  identificacion: MyString
+  paciente: MyString
+  eps: MyString
+  medico_tratante: MyString
+  medico_remitente: MyString
+  fecha_de_remision: 2022-12-07
+  cod_diagnostico: MyString
+  nombre_diagnostico: MyString
+  manejo_actual: MyString
+  estado_enfermedad: MyString
+  propuesta_discutir: MyString
+  revision_histologica: MyString
+  hallazgos_diferentes: MyString
+  revision_imagenes: MyString
+  hallazgos_revision_imagenes: MyString
+  qt: MyString
+  rt: MyString
+  cx: MyString
+  consulta_especialidad_quirurgica: MyString
+  consulta_oncólogo_hematologo: MyString
+  consulta_dolor_cuidados_paliativos: MyString
+  estudios_imagenes: MyString
+  estudios_moleculares: MyString
+  estudios_genomicos: MyString
+  biopsia_string: MyString
+  medicamento_alto_costo: MyString
+  cual_medicamento_alto_costo: MyString
+  intencion_del_tratamiento: MyString
+  valoracion_otro_staff: MyString
+  staff_remitente: MyString
+  respoinsable: 
+  fecha_gestion: MyString
+  gestion_realizada: MyString

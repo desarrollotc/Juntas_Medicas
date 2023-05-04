@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Junta médica</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+  </head>
+
+  <body class="skin-blue sidebar-mini" style="overflow-x: hidden;">
+  
+   <% flash.each do |key, value| %>
+    <% if key==:alert || key=="alert"; then ; cssx="alert" ; textoalerta="Alerta!" ; fonta="ban"; else ; cssx="info" ; textoalerta="Información"; fonta="thumbs-up"; end  %>
+    <div class="alertcls alertcls-<%= cssx %> alert-dismissable" id="alertador">
+        <h4><i class="icon fa fa-<%= fonta %>"></i> <%= textoalerta %></h4>
+        <%= value %>
+    </div>
+    <% end %>
+    <header id="header" class="header">
+    <nav class="nav">
+      <div class="logo">
+        <%= image_tag 'logo.png', width:'180px'%>
+      </div>
+      <br>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="/order_staffs/staff" class="nav-link">
+            <i class="fas fa-home icon"></i>
+            <span class="text">Staff</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+        <a href="/order_staffs/gestionados" class="nav-link">
+          <i class="fas fa-check icon"></i>
+          <span class="text">Gestionados</span>
+        </a>
+      </li>
+
+        <li class="nav-item">
+          <%= form_with(url:"/order_staffs/enrutador", method: "get", local:true, class:"sidebar-form") do %>
+          <div class="input-group">
+            <%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'grupo_t' %>
+            <datalist id="magicHouses">
+            <option value="Cirugía de Mohs">
+            <option value="Dermatología">
+            <option value="Linfomas cutáneos">
+            <option value="Funcional clínico">
+            <option value="Funcional quirúrgico">
+            <option value="Tórax">
+            <option value="Gastrointestinal">
+            <option value="Mastología">
+            <option value="Terapias especiales">
+            <option value="Oncología">
+            <option value="Cirugía cabeza y cuello">
+            <option value="Tumores pélvicos">
+            <option value="Peritoneo">
+            <option value="Hematología">
+          </datalist>
+            <span class="input-group-btn">
+              <%= button_tag "<i class='fa fa-search'></i>".html_safe ,type:"submit", class:"btn btn-flat"%>
+            </span>
+          </div>
+        <% end %>
+        </li>
+        <li class="nav-item">
+          <a href="/order_staffs/charts" class="nav-link">
+            <i class="fas fa-bar-chart icon"></i>
+            <span class="text">Gráficos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/order_staffs/envio_excel" class="nav-link">
+            <i class="fas fa-download icon"></i>
+            <span class="text">Descargas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+        <a href="https://clipchamp.com/watch/sAuCUAJFAxz" class="nav-link">
+          <i class="fas fa-video-camera icon"></i>
+          <span class="text">Video guía</span>
+        </a>
+      </li>
+        <br>
+       
+        <li class="nav-item" id="logo_cerrar_li">
+       
+          <i class="fas fa-sign-out-alt icon" id="logo_cerrar"> <%= link_to "<span class='text'>Cerrar Sesión</span>".html_safe, destroy_user_session_path, method: :delete, class: "prueba" %></i>
+          
+         
+        </li>
+      </ul>
+    </nav>
+    <a id="btn-navig" class="btn-navig" href="#">
+      <i class="fas fa-bars open icon"></i>
+      <i class="fas fa-times close icon"></i>
+    </a>
+  </header>
+
+    
+  <div class="content-wrapper" style="margin-left:20%;">
+  <!--elemento que muestra gif de carga-->
+  <div class="loader" id="loader"></div>
+  <%= yield %>
+  
+  </div>
+
+  <script>
+  
+   /*javascritp de menu*/
+   const headerElm = document.getElementById("header");
+    const btnNavig = document.getElementById("btn-navig");
+
+      btnNavig.addEventListener("click", function () {
+        headerElm.classList.toggle("optimize");
+      });
+      
+</script>
+  </body>
+</html>
