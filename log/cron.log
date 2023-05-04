@@ -1,6 +1,4 @@
+
 /usr/bin/ruby3.0: warning: shebang line ending with \r may cause problems
-Running via Spring preloader in process 95281
-WARNING: Spring is running in production. To fix this make sure the spring gem is only present in `development` and `test` groups in your Gemfile and make sure you always use `bundle install --without development test` in production
-/usr/bin/ruby3.0: warning: shebang line ending with \r may cause problems
-Running via Spring preloader in process 95466
+Running via Spring preloader in process 111782
 WARNING: Spring is running in production. To fix this make sure the spring gem is only present in `development` and `test` groups in your Gemfile and make sure you always use `bundle install --without development test` in production

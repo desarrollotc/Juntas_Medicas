@@ -22,7 +22,7 @@ env :GEM_PATH, ENV['GEM_PATH']
 set :output, './log/cron.log'
 
 
-every 1.day, :at => '11:30 pm' do
+every 1.day, :at => '11:50 pm' do
    
     runner "Cron.ordenes_hospitalarias_ambulatorias"
     
