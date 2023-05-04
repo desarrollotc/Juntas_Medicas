@@ -99,9 +99,11 @@ class FormsController < ApplicationController
       orden.save
     end
     begin
-    redirect_to :action => "visualizador",:identificacion => $identificacion,:id_relacional => $id_relacional
+
+    redirect_to :action => 'visualizador',:identificacion => $identificacion,:id_relacional => $id_relacional
+
     rescue
-      redirect_to :action => "visualizador",:identificacion => $identificacion,:id_relacional => $id_relacional
+      redirect_to "order_staffs/gestionados"
     end
   end
 end

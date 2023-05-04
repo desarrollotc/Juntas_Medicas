@@ -76,5 +76,5 @@
         break if contador <= -1
     end
     %>
-    <%= [paciente,tipo,identificacion.to_s,fecha_ejecucion,observacion,justificacion,cod_diagnostico,estado_gestion,asignados.join(","),gestionados.join(","),responsables.join(","),todas_las_fechas.join(" || "),$formularios_finales,lista_notas.to_s.gsub('"','').gsub('[','').gsub(']','')].join(";") %>
+    <%= [paciente,tipo,identificacion.to_s,fecha_ejecucion,observacion.to_s.gsub(/[^A-Za-z0-9]/, ''),justificacion.to_s.gsub(/[^A-Za-z0-9]/, ''),cod_diagnostico,estado_gestion,asignados.join(","),gestionados.join(","),responsables.join(","),todas_las_fechas.join(" || "),$formularios_finales,lista_notas.to_s.gsub('"','').gsub('[','').gsub(']','').gsub(/[^A-Za-z0-9]/, '')].join(";") %>
 <% end %>

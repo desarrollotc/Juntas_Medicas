@@ -1,0 +1,516 @@
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -lruby-3.0  -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return !!argv[argc];
+6: }
+/* end */
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -lruby-3.0  -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() { return 0; }
+/* end */
+
+./conftest
+"x86_64-linux-gnu-gcc -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC   -c conftest.c"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: #ifndef __GNUC__
+5: # error
+6: |:/ === __GNUC__ undefined === /:|
+7: #endif
+/* end */
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -lruby-3.0  -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() { return sizeof(long) == 8 ? 0 : 1; }
+/* end */
+
+./conftest
+have_header: checking for sys/types.h... -------------------- yes
+
+"x86_64-linux-gnu-gcc -E -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <sys/types.h>
+/* end */
+
+--------------------
+
+have_func: checking for OCIEnvCreate() in oci.h... -------------------- yes
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/usr/lib  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/usr/lib  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <oci.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))OCIEnvCreate; return !p; }
+/* end */
+
+--------------------
+
+"x86_64-linux-gnu-gcc -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include   -c conftest.c"
+conftest.c:6:5: error: size of array ‘conftest_const’ is negative
+    6 | int conftest_const[(OCI_MAJOR_VERSION < 0) ? 1 : -1];
+      |     ^~~~~~~~~~~~~~
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <oci.h>
+4: 
+5: /*top*/
+6: int conftest_const[(OCI_MAJOR_VERSION < 0) ? 1 : -1];
+/* end */
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -lruby-3.0  -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <oci.h>
+ 4: 
+ 5: #include <stdio.h>
+ 6: /*top*/
+ 7: typedef unsigned
+ 8: #ifdef PRI_LL_PREFIX
+ 9: #define PRI_CONFTEST_PREFIX PRI_LL_PREFIX
+10: LONG_LONG
+11: #else
+12: #define PRI_CONFTEST_PREFIX "l"
+13: long
+14: #endif
+15: conftest_type;
+16: conftest_type conftest_const = (conftest_type)(OCI_MAJOR_VERSION);
+17: int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+/* end */
+
+./conftest |
+"x86_64-linux-gnu-gcc -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include   -c conftest.c"
+conftest.c:6:5: error: size of array ‘conftest_const’ is negative
+    6 | int conftest_const[(OCI_MINOR_VERSION < 0) ? 1 : -1];
+      |     ^~~~~~~~~~~~~~
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <oci.h>
+4: 
+5: /*top*/
+6: int conftest_const[(OCI_MINOR_VERSION < 0) ? 1 : -1];
+/* end */
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -lruby-3.0  -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <oci.h>
+ 4: 
+ 5: #include <stdio.h>
+ 6: /*top*/
+ 7: typedef unsigned
+ 8: #ifdef PRI_LL_PREFIX
+ 9: #define PRI_CONFTEST_PREFIX PRI_LL_PREFIX
+10: LONG_LONG
+11: #else
+12: #define PRI_CONFTEST_PREFIX "l"
+13: long
+14: #endif
+15: conftest_type;
+16: conftest_type conftest_const = (conftest_type)(OCI_MINOR_VERSION);
+17: int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+/* end */
+
+./conftest |
+checking for OCI_MAJOR_VERSION in oci.h... -------------------- 21
+
+"x86_64-linux-gnu-gcc -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include   -c conftest.c"
+conftest.c:6:5: error: size of array ‘conftest_const’ is negative
+    6 | int conftest_const[(OCI_MAJOR_VERSION < 0) ? 1 : -1];
+      |     ^~~~~~~~~~~~~~
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <oci.h>
+4: 
+5: /*top*/
+6: int conftest_const[(OCI_MAJOR_VERSION < 0) ? 1 : -1];
+/* end */
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <oci.h>
+ 4: 
+ 5: #include <stdio.h>
+ 6: /*top*/
+ 7: typedef unsigned
+ 8: #ifdef PRI_LL_PREFIX
+ 9: #define PRI_CONFTEST_PREFIX PRI_LL_PREFIX
+10: LONG_LONG
+11: #else
+12: #define PRI_CONFTEST_PREFIX "l"
+13: long
+14: #endif
+15: conftest_type;
+16: conftest_type conftest_const = (conftest_type)(OCI_MAJOR_VERSION);
+17: int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+/* end */
+
+./conftest |
+--------------------
+
+checking for OCI_MINOR_VERSION in oci.h... -------------------- 9
+
+"x86_64-linux-gnu-gcc -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include   -c conftest.c"
+conftest.c:6:5: error: size of array ‘conftest_const’ is negative
+    6 | int conftest_const[(OCI_MINOR_VERSION < 0) ? 1 : -1];
+      |     ^~~~~~~~~~~~~~
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <oci.h>
+4: 
+5: /*top*/
+6: int conftest_const[(OCI_MINOR_VERSION < 0) ? 1 : -1];
+/* end */
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <oci.h>
+ 4: 
+ 5: #include <stdio.h>
+ 6: /*top*/
+ 7: typedef unsigned
+ 8: #ifdef PRI_LL_PREFIX
+ 9: #define PRI_CONFTEST_PREFIX PRI_LL_PREFIX
+10: LONG_LONG
+11: #else
+12: #define PRI_CONFTEST_PREFIX "l"
+13: long
+14: #endif
+15: conftest_type;
+16: conftest_type conftest_const = (conftest_type)(OCI_MINOR_VERSION);
+17: int main() {printf("%"PRI_CONFTEST_PREFIX"u\n", conftest_const); return 0;}
+/* end */
+
+./conftest |
+--------------------
+
+have_func: checking for localtime_r()... -------------------- yes
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))localtime_r; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for dladdr()... -------------------- yes
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:14:57: error: ‘dladdr’ undeclared (first use in this function); did you mean ‘daddl’?
+   14 | int t(void) { void ((*volatile p)()); p = (void ((*)()))dladdr; return !p; }
+      |                                                         ^~~~~~
+      |                                                         daddl
+conftest.c:14:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))dladdr; return !p; }
+/* end */
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: extern void dladdr();
+15: int t(void) { dladdr(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for dlmodinfo()... -------------------- no
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:14:57: error: ‘dlmodinfo’ undeclared (first use in this function)
+   14 | int t(void) { void ((*volatile p)()); p = (void ((*)()))dlmodinfo; return !p; }
+      |                                                         ^~~~~~~~~
+conftest.c:14:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))dlmodinfo; return !p; }
+/* end */
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+/usr/bin/ld: /tmp/ccv3Ckyf.o: in function `t':
+/home/eduerj/GitHub/Juntas_Medicas/vendor/bundle/ruby/3.0.0/gems/ruby-oci8-2.2.12/ext/oci8/conftest.c:15: undefined reference to `dlmodinfo'
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: extern void dlmodinfo();
+15: int t(void) { dlmodinfo(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for dlgetname()... -------------------- no
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:14:57: error: ‘dlgetname’ undeclared (first use in this function)
+   14 | int t(void) { void ((*volatile p)()); p = (void ((*)()))dlgetname; return !p; }
+      |                                                         ^~~~~~~~~
+conftest.c:14:57: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: int t(void) { void ((*volatile p)()); p = (void ((*)()))dlgetname; return !p; }
+/* end */
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+/usr/bin/ld: /tmp/ccVXC5e9.o: in function `t':
+/home/eduerj/GitHub/Juntas_Medicas/vendor/bundle/ruby/3.0.0/gems/ruby-oci8-2.2.12/ext/oci8/conftest.c:15: undefined reference to `dlgetname'
+collect2: error: ld returned 1 exit status
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     int (* volatile tp)(void)=(int (*)(void))&t;
+ 9:     printf("%d", (*tp)());
+10:   }
+11: 
+12:   return !!argv[argc];
+13: }
+14: extern void dlgetname();
+15: int t(void) { dlgetname(); return 0; }
+/* end */
+
+--------------------
+
+have_header: checking for ruby/thread.h... -------------------- yes
+
+"x86_64-linux-gnu-gcc -E -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <ruby/thread.h>
+/* end */
+
+--------------------
+
+have_func: checking for rb_class_superclass() in ruby.h... -------------------- yes
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <ruby.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_class_superclass; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_thread_call_without_gvl() in ruby/thread.h... -------------------- yes
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <ruby/thread.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_thread_call_without_gvl; return !p; }
+/* end */
+
+--------------------
+
+have_func: checking for rb_sym2str() in ruby.h... -------------------- yes
+
+"x86_64-linux-gnu-gcc -o conftest -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall conftest.c  -L. -L/usr/lib/x86_64-linux-gnu -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -fstack-protector-strong -rdynamic -Wl,-export-dynamic     -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lruby-3.0  -L/opt/oracle/instantclient_21_9 -Wl,-rpath,/opt/oracle/instantclient_21_9 -lclntsh -lm   -lc"
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <ruby.h>
+ 4: 
+ 5: /*top*/
+ 6: extern int t(void);
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     int (* volatile tp)(void)=(int (*)(void))&t;
+11:     printf("%d", (*tp)());
+12:   }
+13: 
+14:   return !!argv[argc];
+15: }
+16: int t(void) { void ((*volatile p)()); p = (void ((*)()))rb_sym2str; return !p; }
+/* end */
+
+--------------------
+
+"x86_64-linux-gnu-gcc -I/usr/include/x86_64-linux-gnu/ruby-3.0.0 -I/usr/include/ruby-3.0.0/ruby/backward -I/usr/include/ruby-3.0.0 -I. -Wdate-time -D_FORTIFY_SOURCE=2   -g -O2 -ffile-prefix-map=/build/ruby3.0-W371Hm/ruby3.0-3.0.2=. -fstack-protector-strong -Wformat -Werror=format-security -fPIC -I/opt/oracle/instantclient_21_9/sdk/include -Wall   -c conftest.c"
+extconf.h is:
+/* begin */
+ 1: #ifndef EXTCONF_H
+ 2: #define EXTCONF_H
+ 3: #define HAVE_SYS_TYPES_H 1
+ 4: #define HAVE_OCIENVCREATE 1
+ 5: #define ORACLE_CLIENT_VERSION 0x15090000
+ 6: #define HAVE_LOCALTIME_R 1
+ 7: #define HAVE_DLADDR 1
+ 8: #define HAVE_RUBY_THREAD_H 1
+ 9: #define HAVE_RB_CLASS_SUPERCLASS 1
+10: #define HAVE_RB_THREAD_CALL_WITHOUT_GVL 1
+11: #define HAVE_RB_SYM2STR 1
+12: #define HAVE_PLTHOOK 1
+13: #define Init_oci8lib Init_oci8lib_300
+14: #define oci8lib oci8lib_300
+15: #define OCI8LIB_VERSION "2.2.12"
+16: #endif
+/* end */
+

@@ -12,7 +12,7 @@
       <th>Paciente</th>
       <th>Identificación</th>
       <th>Días transcurridos</th>
-      <th>Fecha De Ordenamiento</th>
+       <th>Nota Captación</th>
       <th>Diagnóstico</th>
       <th>Gestión</th>
       
@@ -32,8 +32,12 @@
       <%else%>
       <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tipo',value:staff.tipo,type: 'hidden'  %><%= $resta_dias_oportunidad %> <i class='fa fa-bell' style="color:green;"></i></td>
       <%end%>
-      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'gestion_grupo',value:staff.grupos["oncologia"]["estado"],type: 'hidden'  %><%=staff.fecha_ejecucion%></td>
-      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tumor',value:"oncologia",type: 'hidden'  %><%=staff.nombre_diagnostico%></td>
+      <% if staff.grupos["oncologia"]["nota"] != "" %>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'gestion_grupo',value:staff.grupos["oncologia"]["estado"], type: 'hidden'  %><%=staff.grupos["oncologia"]["nota"]%></td>
+     <% else %>
+     <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'gestion_grupo',value:staff.grupos["oncologia"]["estado"], type: 'hidden'  %>No Se Ha Captado</td>
+     <%end%>
+           <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tumor',value:"oncologia",type: 'hidden'  %><%=staff.nombre_diagnostico%></td>
       <td>
       <% if staff.grupos["oncologia"]["estado"] == false %>
       <div class="input-group">
@@ -63,7 +67,7 @@
         <th>Paciente</th>
         <th>Identificación</th>
         <th>Días transcurridos</th>
-        <th>Fecha De Ordenamiento</th>
+         <th>Nota Captación</th>
         <th>Diagnóstico</th>
         <th>Gestión</th>
     </tr>

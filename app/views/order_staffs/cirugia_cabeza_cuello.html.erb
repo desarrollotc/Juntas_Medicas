@@ -12,7 +12,7 @@
       <th>Paciente</th>
       <th>Identificación</th>
       <th>Días transcurridos</th>
-      <th>Fecha De Ordenamiento</th>
+      <th>Nota Captación</th>
       <th>Diagnóstico</th>
       <th>Gestión</th>
       
@@ -32,7 +32,11 @@
       <%else%>
       <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tipo',value:staff.tipo,type: 'hidden'  %><%= $resta_dias_oportunidad %> <i class='fa fa-bell' style="color:green;"></i></td>
       <%end%>
-      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'gestion_grupo',value:staff.grupos["cirugia_cabeza_cuello"]["estado"],type: 'hidden'  %><%=staff.fecha_ejecucion%></td>
+      <% if staff.grupos["cirugia_cabeza_cuello"]["nota"] != "" %>
+      <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'gestion_grupo',value:staff.grupos["cirugia_cabeza_cuello"]["estado"], type: 'hidden'  %><%=staff.grupos["cirugia_cabeza_cuello"]["nota"]%></td>
+     <% else %>
+     <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'gestion_grupo',value:staff.grupos["cirugia_cabeza_cuello"]["estado"], type: 'hidden'  %>No Se Ha Captado</td>
+     <%end%>
       <td><%= text_field_tag 'search', "", class: "form-control", required: true,list: "magicHouses", placeholder: 'Buscar grupo', name: 'tumor',value:"cirugia_cabeza_cuello",type: 'hidden'  %><%=staff.nombre_diagnostico%></td>
       <td>
       <% if staff.grupos["cirugia_cabeza_cuello"]["estado"] == false %>
@@ -63,7 +67,7 @@
         <th>Paciente</th>
         <th>Identificación</th>
         <th>Días transcurridos</th>
-        <th>Fecha De Ordenamiento</th>
+        <th>Nota Captación</th>
         <th>Diagnóstico</th>
         <th>Gestión</th>
     </tr>

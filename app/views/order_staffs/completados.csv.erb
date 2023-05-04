@@ -62,5 +62,5 @@
     end
     todas_las_fechas = lista_fechas
     %>
-    <%= [paciente , tipo , identificacion.to_s , fecha_ejecucion , observacion, justificacion, cod_diagnostico, estado_gestion, asignados.join(","),gestionados.join(","), responsables.join(","),todas_las_fechas.join(" || "),$formularios_finales,todas_las_notas.join(" || ")].join(";") %>
+    <%= [paciente , tipo , identificacion.to_s , fecha_ejecucion , observacion.to_s.gsub(/[^A-Za-z0-9]/, ''), justificacion.to_s.gsub(/[^A-Za-z0-9]/, ''), cod_diagnostico, estado_gestion, asignados.join(","),gestionados.join(","), responsables.join(","),todas_las_fechas.join(" || "),$formularios_finales,todas_las_notas.join(" || ").to_s.gsub(/[^A-Za-z0-9]/, '')].join(";") %>
 <% end %>

@@ -999,3 +999,4 @@ D, [2023-01-20T09:47:45.595216 #25306] DEBUG -- : MONGODB | localhost:27017 req:
 D, [2023-01-20T09:47:45.596713 #25306] DEBUG -- : MONGODB | localhost:27017 req:5 | junta_medica.insert | SUCCEEDED | 0.001s
 D, [2023-01-20T09:47:45.599988 #25306] DEBUG -- : MONGODB | localhost:27017 req:6 conn:1:1 | junta_medica.insert | STARTED | {"insert"=>"order_staffs", "ordered"=>true, "documents"=>[{"_id"=>BSON::ObjectId('63caa9918fbd7362daba9281'), "observacion"=>".", "justificacion"=>"STAFF ONCOLOGIA CON PARTICIPACION DE URO ONCOLOGIA Y RADIOLOGIA.", "grupos"=>{"cirugia_mohs"=>{"incluid...
 D, [2023-01-20T09:47:45.600605 #25306] DEBUG -- : MONGODB | localhost:27017 req:6 | junta_medica.insert | SUCCEEDED | 0.000s
+W, [2023-05-04T00:07:17.162432 #92032]  WARN -- : The BSON Symbol type is deprecated by MongoDB. Please use String or StringifiedSymbol field types instead of the Symbol field type

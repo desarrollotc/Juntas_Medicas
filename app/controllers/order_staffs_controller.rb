@@ -1,6 +1,6 @@
 class OrderStaffsController < ApplicationController
   def staff
-    @staff = OrderStaff.where(:estado_formulario => false)
+    @staff = OrderStaff.where(:asignados => [])
     @fecha_actual = Time.now.strftime("%F")
     id_usuario = current_user.id
   end
