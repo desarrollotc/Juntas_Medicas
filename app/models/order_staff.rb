@@ -102,6 +102,18 @@ class OrderStaff
 "responsable" => "",
 "nota" => "",
 "fecha_captacion" => Time.now.strftime("%F")
+},
+"muerte_digna" =>  {"incluido" => false,
+"estado" => false,
+"responsable" => "",
+"nota" => "",
+"fecha_captacion" => Time.now.strftime("%F")
+},
+"extra_institucional" =>  {"incluido" => false,
+"estado" => false,
+"responsable" => "",
+"nota" => "",
+"fecha_captacion" => Time.now.strftime("%F")
 }
 
 }
